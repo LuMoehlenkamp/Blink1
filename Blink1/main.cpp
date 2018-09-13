@@ -16,9 +16,9 @@ int main(void)
 	while (true)
 	{
 		digitalWrite(LED, HIGH);  // On
-		delay(500); // ms
+		delay(100); // ms
 		digitalWrite(LED, LOW);	  // Off
-		delay(500);
+		delay(100);
 	}
 	return 0;
 }
