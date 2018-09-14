@@ -1,20 +1,23 @@
 #include <wiringPi.h>
+#include <wiringSerial.h>
+#include <termios.h>
+#include <debug/debug.h>
+#include <cstdio>
+#include <stdio.h>
 
-// LED Pin - wiringPi pin 0 is BCM_GPIO 17.
-// we have to use BCM numbering when initializing with wiringPiSetupSys
-// when choosing a different pin number please use the BCM numbering, also
-// update the Property Pages - Build Events - Remote Post-Build Event command 
-// which uses gpio export for setup for wiringPiSetupSys
 #define	LED	17
 
-int main(void)
-{
-	wiringPiSetupSys();
-
+int main(void){
+	auto i = wiringPiSetupSys();
 	pinMode(LED, OUTPUT);
-
-	while (true)
-	{
+	// stdout << i << std::endl;
+	int fd = 0;
+	termios options;
+	tcgetattr(fd, &options);
+	options.c_cflag = B9600|CS7|PARENB|CSTOPB;
+	auto j = tcsetattr(fd, 0,&options);
+	
+	while (true){
 		digitalWrite(LED, HIGH);  // On
 		delay(100); // ms
 		digitalWrite(LED, LOW);	  // Off
