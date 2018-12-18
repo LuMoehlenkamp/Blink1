@@ -1,14 +1,13 @@
 #include "serial.h"
-#include <string.h>
-#include <fcntl.h>
 
 serial::serial()
 {
+  setupResult = serialSetup(serialIdentifier, initialSerialConfig, actualSerialConfig);
 }
-
 
 serial::~serial()
 {
+
 }
 
 int serial::serialSetup(int &serialIdentifier, termios &initialSerialConfig, termios &actualSerialConfig)
@@ -28,8 +27,4 @@ int serial::serialSetup(int &serialIdentifier, termios &initialSerialConfig, ter
   cfsetispeed(&actualSerialConfig, B9600);
 
   return tcsetattr(serialIdentifier, TCSANOW, &actualSerialConfig);
-}
-
-void serial::serialConnect()
-{
 }

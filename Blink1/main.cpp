@@ -12,9 +12,12 @@
 
 #include <cstdio>
 
+#include "serial.h"
+
 #define	LED	0
 
 int main(void){
+  serial serialDevice;
   struct termios tio;
   int tty_fd;
   fd_set rdset;
