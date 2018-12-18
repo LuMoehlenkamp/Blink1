@@ -16,7 +16,8 @@
 
 #define	LED	0
 
-int main(void){
+int main(void)
+{
   serial serialDevice;
   struct termios tio;
   int tty_fd;
@@ -39,14 +40,19 @@ int main(void){
   cfsetispeed(&tio, B9600);			// 9600 baud
 
   tcsetattr(tty_fd, TCSANOW, &tio);
-  while (true) {
-   if (read(tty_fd, &c, 1) > 0){
+  while (true) 
+  {
+   //if (read(tty_fd, &c, 1) > 0){
+    if (serialDevice.serialRead() > 0) 
+    {
       // if new data is available on the serial port, print it out
-      std::cout << &c;
-      }
-    else {
+      // std::cout << &c;
+      std::cout << serialDevice.getData();
+    }
+    else 
+    {
       std::cout << "no data\n";
-      }
+    }
   }
 
   close(tty_fd);

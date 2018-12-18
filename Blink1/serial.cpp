@@ -2,7 +2,7 @@
 
 serial::serial()
 {
-  setupResult = serialSetup(serialIdentifier, initialSerialConfig, actualSerialConfig);
+  setupResult = serialSetup();
 }
 
 serial::~serial()
@@ -10,7 +10,7 @@ serial::~serial()
 
 }
 
-int serial::serialSetup(int &serialIdentifier, termios &initialSerialConfig, termios &actualSerialConfig)
+int serial::serialSetup()
 {
   serialIdentifier = open("/dev/ttyAMA0", O_RDWR);
   tcgetattr(serialIdentifier, &initialSerialConfig);
@@ -27,4 +27,19 @@ int serial::serialSetup(int &serialIdentifier, termios &initialSerialConfig, ter
   cfsetispeed(&actualSerialConfig, B9600);
 
   return tcsetattr(serialIdentifier, TCSANOW, &actualSerialConfig);
+}
+
+int serial::serialRead()
+{
+  return read(serialIdentifier, &dataBuffer, 1);
+}
+
+int serial::serialTearDown()
+{
+  return 0;
+}
+
+unsigned char serial::getData()
+{
+  return dataBuffer;
 }
