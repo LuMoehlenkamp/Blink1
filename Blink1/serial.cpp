@@ -7,7 +7,7 @@ serial::serial()
 
 serial::~serial()
 {
-
+  serialTearDown();
 }
 
 int serial::serialSetup()
@@ -36,7 +36,7 @@ int serial::serialRead()
 
 int serial::serialTearDown()
 {
-  return 0;
+  return close(serialIdentifier);
 }
 
 unsigned char serial::getData()
