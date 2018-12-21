@@ -14,14 +14,14 @@ mqttWrapper::mqttWrapper(const char * _id, const char * _topic, const char * _ho
   connect_async(host,     // non blocking connection to broker request
     port,
     keepalive);
-  //try
-  //{
-  //  loop_start();            // Start thread managing connection / publish / subscribe
-  //}
-  //catch (const std::exception&)
-  //{
-  //  std::cout << "exception thrown";
-  //}
+  try
+  {
+    loop_start();            // Start thread managing connection / publish / subscribe
+  }
+  catch (const std::exception&)
+  {
+    std::cout << "exception thrown";
+  }
   
 }
 
