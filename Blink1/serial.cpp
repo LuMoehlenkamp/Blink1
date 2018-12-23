@@ -39,7 +39,7 @@ int serial::serialTearDown()
   return close(serialIdentifier);
 }
 
-unsigned char serial::getData()
+char serial::getData()
 {
   return dataBuffer;
 }

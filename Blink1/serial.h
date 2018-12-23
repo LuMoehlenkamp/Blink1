@@ -10,7 +10,7 @@ class serial
   struct termios actualSerialConfig;
   int serialIdentifier;
   int setupResult;
-  unsigned char dataBuffer;
+  char dataBuffer;
   
 public:
   serial();
@@ -18,6 +18,6 @@ public:
   int serialSetup();
   int serialRead();
   int serialTearDown();
-  unsigned char getData();
+  char getData();
 };
 
