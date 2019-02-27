@@ -6,14 +6,14 @@
 mqttWrapper::mqttWrapper(const char * _id, const char * _topic, const char * _host, int _port) : mosquittopp(_id,true)
 {
   mosqpp::lib_init();        // Mandatory initialization for mosquitto library
-  this->keepalive = 60;    // Basic configuration setup for myMosq class
+  this->keepalive = 120;    // Basic configuration setup for myMosq class
   this->id = _id;
   this->port = _port;
   this->host = _host;
   this->topic = _topic;
-  connect_async(host,     // non blocking connection to broker request
-    port,
-    keepalive);
+  // connect_async(host, port, keepalive);    // non blocking connection to broker request
+  connect(host, port, keepalive);
+  /*
   try
   {
     loop_start();            // Start thread managing connection / publish / subscribe
@@ -22,12 +22,12 @@ mqttWrapper::mqttWrapper(const char * _id, const char * _topic, const char * _ho
   {
     std::cout << "exception thrown";
   }
-  
+  */
 }
 
 mqttWrapper::~mqttWrapper()
 {
-  loop_stop();            // Kill the thread
+  // loop_stop();            // Kill the thread
   mosqpp::lib_cleanup();    // Mosquitto library cleanup
 }
 

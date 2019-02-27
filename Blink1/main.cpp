@@ -1,14 +1,15 @@
-#include <wiringPi.h>
-#include <wiringSerial.h>
-#include <debug/debug.h>
-#include <errno.h>
-#include <stdio.h>
-#include <string>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
+// ToDo List:
+// + mqtt wrapper implementation withoud using threads
+//  - reconnect if constructor fails to connect to broker
+//
+// + implementation of meter message interpreter
+//  - identify beginnig of new message
+//  - split message into individual lines
+//  - parse OBIS codes and corresponding values including their units
+// 
+
 #include <iostream>
-#include <cstdio>
+#include <wiringPi.h>
 
 #include "mqttWrapper.h"
 #include "serial.h"
@@ -21,18 +22,18 @@ int main(void)
   mqttWrapper *mqttHandler;
   mqttHandler = new mqttWrapper("mqttTest","test","192.168.178.34", 1883);
   mqttHandler->send_message("test");
-
+  
   std::string meterMsgLine;
   std::string newLine;
   newLine.push_back('\n');
   std::string endOfMessage;
   endOfMessage.push_back('!');
-
+  std::string dataBuffer;
   while (true) 
   {
     if (serialDevice.serialRead() > 0)
     {
-      std::string dataBuffer;
+      dataBuffer.clear();
       dataBuffer.push_back(serialDevice.getData());
       if (dataBuffer != newLine) {
         meterMsgLine.operator+=(dataBuffer);
