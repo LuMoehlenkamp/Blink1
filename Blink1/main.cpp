@@ -13,22 +13,28 @@
 
 #include "mqttWrapper.h"
 #include "serial.h"
+#include "influxdb-cpp/influxdb.hpp"
 
 #define	LED	0
 
 int main(void)
 {
   serial serialDevice;
+
   mqttWrapper *mqttHandler;
   mqttHandler = new mqttWrapper("mqttTest","test","192.168.178.34", 1883);
   mqttHandler->send_message("test");
   
   std::string meterMsgLine;
+
   std::string newLine;
   newLine.push_back('\n');
+
   std::string endOfMessage;
   endOfMessage.push_back('!');
+
   std::string dataBuffer;
+
   while (true) 
   {
     if (serialDevice.serialRead() > 0)
