@@ -16,6 +16,8 @@
 #include "serial.h"
 #include "influxdb-cpp/influxdb.hpp"
 
+#include "boost/algorithm/string.hpp"
+
 #define	LED	0
 
 int main(void)
@@ -26,7 +28,7 @@ int main(void)
   mqttHandler = new mqttWrapper("mqttTest","test","192.168.178.34", 1883);
   mqttHandler->send_message("test");
   
-  std::string meterMsgLine;
+  std::string meterMsg;
 
   std::string newLine;
   newLine.push_back('\n');
@@ -42,15 +44,19 @@ int main(void)
     {
       dataBuffer.clear();
       dataBuffer.push_back(serialDevice.getData());
-      if (dataBuffer != newLine) {
-        meterMsgLine.operator+=(dataBuffer);
+
+      if (dataBuffer != endOfMessage) {
+        meterMsg.append(dataBuffer.data());
+      }
+      else {
+        std::cout << meterMsg << std::endl;
+        meterMsg.clear();
       }
       // if new data is available on the serial port, print it out
-      std::cout << dataBuffer;
+      //std::cout << dataBuffer;
       // mqttHandler->send_message("test");
     }
-    else 
-    {
+    else {
       std::cout << "no data\n";
     }
   }
