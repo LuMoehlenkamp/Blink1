@@ -9,7 +9,8 @@
 // 
 // + inject new messages into database
 // 
-// 
+//
+//
 
 #include <iostream>
 #include <wiringPi.h>

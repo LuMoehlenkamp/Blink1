@@ -1,6 +1,5 @@
 #pragma once
-// #include "../../../../1.0/-111134560/usr/include/mosquitto.h"
-#include <mosquitto.h>
+// #include <mosquitto.h>
 #include <mosquittopp.h>
 
 class mqttWrapper : public mosqpp::mosquittopp
