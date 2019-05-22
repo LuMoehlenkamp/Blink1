@@ -8,9 +8,6 @@
 //  - parse OBIS codes and corresponding values including their units
 // 
 // + inject new messages into database
-// 
-//
-//
 
 #include <iostream>
 #include <wiringPi.h>
