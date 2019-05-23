@@ -10,5 +10,6 @@ private:
 public:
   meterMsg();
   ~meterMsg();
+  void splitMeterMsg();
 };
 
