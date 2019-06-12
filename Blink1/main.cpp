@@ -1,21 +1,9 @@
-// ToDo List:
-// + mqtt wrapper implementation withoud using threads
-//  - reconnect if constructor fails to connect to broker
-//
-// + implementation of meter message interpreter
-//  - identify beginnig of new message
-//  - split message into individual lines
-//  - parse OBIS codes and corresponding values including their units
-// 
-// + inject new messages into database
-
 #include <iostream>
 #include <wiringPi.h>
 
 #include "mqttWrapper.h"
 #include "serial.h"
 #include "influxdb-cpp/influxdb.hpp"
-
 #include "boost/algorithm/string.hpp"
 
 #define	LED	0
