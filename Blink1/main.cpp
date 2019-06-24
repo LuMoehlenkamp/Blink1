@@ -56,7 +56,9 @@ int main(void)
 
         influxdb_cpp::builder()
           .meas("test_1")
-          .field("test", ++testVal);
+          .tag("test","y")
+          .field("test", ++testVal)
+          .post_http(serverInfo);
       }
       // if new data is available on the serial port, print it out
       //std::cout << dataBuffer;
