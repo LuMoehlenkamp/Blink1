@@ -34,6 +34,8 @@ int main(void)
 
   int messageCnt = 0;
 
+  influxdb_cpp::server_info serverInfo("192.168.178.34", 8086, "meter", "admin", "LuPi");
+  int testVal = 0;
   while (true) 
   {
     if (serialDevice.serialRead() > 0)
@@ -51,6 +53,10 @@ int main(void)
       else {
         std::cout << meterMessage << std::endl;
         meterMessage.clear();
+
+        influxdb_cpp::builder()
+          .meas("test_1")
+          .field("test", ++testVal);
       }
       // if new data is available on the serial port, print it out
       //std::cout << dataBuffer;
