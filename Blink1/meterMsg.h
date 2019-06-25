@@ -7,8 +7,8 @@ class meterMsg
 private:
  std::string manufacturerID;
  std::string utilityID;
- float importetEnergy_01mWh;
- float exportetEnergy_01mWh;
+ double importetEnergy_01mWh;
+ double exportetEnergy_01mWh;
  float actualPower_L1_W;
  float actualPower_L2_W;
  float actualPower_L3_W;

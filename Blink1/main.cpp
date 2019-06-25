@@ -49,7 +49,10 @@ int main(void)
         std::cout << meterMessage << std::endl;
 
         boost::split(SplitVec, meterMessage, boost::is_any_of("\r\n"), boost::token_compress_on); // move to meterMsgHandler
-        
+        auto a = SplitVec.at(2).find("(");
+        auto b = SplitVec.at(2).rfind("*");
+        auto energy = stod(SplitVec.at(2).substr(a+1, b-a+1), nullptr);
+
         influxdb_cpp::builder() // move to meterMsgHandler
           .meas("test_1")
           .tag("test","y")
