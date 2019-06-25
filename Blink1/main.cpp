@@ -8,22 +8,18 @@
 #include "meterMsg.h"
 
 #define	LED	0
-
+using namespace std;
 int main(void)
 {
   serial serialDevice;
 
-  mqttWrapper *mqttHandler;
+  /*mqttWrapper *mqttHandler;
   mqttHandler = new mqttWrapper("mqttTest","test","192.168.178.34", 1883);
-  mqttHandler->send_message("test");
+  mqttHandler->send_message("test");*/
   
   std::string meterMessage;
-
-  meterMsg meterMsg;
-
-  std::string newLine;
-  newLine.push_back('\n');
-
+  std::vector < std::string > SplitVec; // move to meterMsgHandler
+  
   std::string beginOfMessage;
   beginOfMessage.push_back('/');
 
@@ -34,31 +30,33 @@ int main(void)
 
   int messageCnt = 0;
 
-  influxdb_cpp::server_info serverInfo("192.168.178.34", 8086, "meter", "admin", "LuPi");
-  int testVal = 0;
+  influxdb_cpp::server_info serverInfo("192.168.178.34", 8086, "meter", "admin", "LuPi"); // move to meterMsgHandler
+
   while (true) 
   {
     if (serialDevice.serialRead() > 0)
     {
       dataBuffer.clear();
       dataBuffer.push_back(serialDevice.getData());
+
       if (dataBuffer == beginOfMessage) {
         ++messageCnt;
         std::cout << messageCnt << std::endl;
       }
+      meterMessage.append(dataBuffer.data());
 
-      if (dataBuffer != endOfMessage) {
-        meterMessage.append(dataBuffer.data());
-      }
-      else {
+      if ((dataBuffer == endOfMessage)) {
         std::cout << meterMessage << std::endl;
-        meterMessage.clear();
 
-        influxdb_cpp::builder()
+        boost::split(SplitVec, meterMessage, boost::is_any_of("\r\n"), boost::token_compress_on); // move to meterMsgHandler
+        
+        influxdb_cpp::builder() // move to meterMsgHandler
           .meas("test_1")
           .tag("test","y")
-          .field("test", ++testVal)
+          .field("test", messageCnt)
           .post_http(serverInfo);
+
+        meterMessage.clear();
       }
       // if new data is available on the serial port, print it out
       //std::cout << dataBuffer;
@@ -69,12 +67,12 @@ int main(void)
     }
   }
 
-  while (true)
-  {
-		digitalWrite(LED, HIGH);  // On
-		delay(100); // ms
-		digitalWrite(LED, LOW);	  // Off
-		delay(100);
-	}
+ // while (true)
+ // {
+	//	digitalWrite(LED, HIGH);  // On
+	//	delay(100); // ms
+	//	digitalWrite(LED, LOW);	  // Off
+	//	delay(100);
+	//}
 	return 0;
 }
