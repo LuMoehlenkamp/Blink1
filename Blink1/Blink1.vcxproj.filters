@@ -5,10 +5,12 @@
     <ClCompile Include="serial.cpp" />
     <ClCompile Include="mqttWrapper.cpp" />
     <ClCompile Include="meterMsg.cpp" />
+    <ClCompile Include="meterMsgHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="serial.h" />
     <ClInclude Include="mqttWrapper.h" />
     <ClInclude Include="meterMsg.h" />
+    <ClInclude Include="meterMsgHandler.h" />
   </ItemGroup>
 </Project>
