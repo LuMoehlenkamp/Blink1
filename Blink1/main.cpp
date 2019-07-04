@@ -87,6 +87,7 @@ int main(void)
           .post_http(serverInfo);
 
         meterMessage.clear();
+        SplitVec.clear(); //ToDo: check if correct
       }
       // if new data is available on the serial port, print it out
       //std::cout << dataBuffer;
