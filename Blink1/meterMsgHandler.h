@@ -9,6 +9,5 @@ public:
   meterMsgHandler();
   ~meterMsgHandler();
 
-  void splitMessageIntoLines(std::string,std::vector < std::string >&);
-  void 
+  void splitMessageIntoLines();
 };
