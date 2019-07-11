@@ -5,6 +5,7 @@
 #include "serial.h"
 #include "influxdb-cpp/influxdb.hpp"
 #include "boost/algorithm/string.hpp"
+#include "boost/version.hpp"
 #include "meterMsg.h"
 
 #define	LED	0
