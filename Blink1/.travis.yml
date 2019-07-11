@@ -1,4 +1,10 @@
 language: cpp
-script: true
+
 compiler: gcc
+
 os: linux
+
+script: 
+ - true
+ - echo "Success"
+
