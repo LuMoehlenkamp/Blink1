@@ -3,6 +3,7 @@ language: cpp
 compiler: gcc
 
 script: 
- - true
+ - g++ main.cpp -o travis_gcc_cpp
+ - ./travis_gcc_cpp98
  - echo "Success"
 
