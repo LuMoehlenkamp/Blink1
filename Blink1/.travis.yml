@@ -2,8 +2,6 @@ language: cpp
 
 compiler: gcc
 
-os: linux
-
 script: 
  - true
  - echo "Success"
