@@ -31,7 +31,8 @@ int main(void)
 
   int messageCnt = 0;
 
-  unsigned int testCnt = 0;
+  unsigned int testCntEnergy = 0;
+  unsigned int testCntPowerPhaseA = 0;
 
   influxdb_cpp::server_info serverInfo("192.168.178.34", 8086, "meter", "admin", "LuPi"); // move to meterMsgHandler
 
@@ -44,24 +45,28 @@ int main(void)
 
       if (dataBuffer == beginOfMessage) {
         ++messageCnt;
-        std::cout << messageCnt << std::endl;
+        //std::cout << messageCnt << std::endl;
       }
       meterMessage.append(dataBuffer.data());
 
       if ((dataBuffer == endOfMessage)) {
-        std::cout << meterMessage << std::endl;
+        //std::cout << meterMessage << std::endl;
         boost::trim(meterMessage);
         boost::split(SplitVec, meterMessage, boost::is_any_of("\r\n"), boost::token_compress_on); // move to meterMsgHandler
         auto a = SplitVec.at(2).find("(");
         auto b = SplitVec.at(2).rfind("*");
         auto energy = stof(SplitVec.at(2).substr(a+1, b-a+1), nullptr);
         
+        if (energy < 19000) {
+          ++testCntEnergy;
+        }
+
         a = SplitVec.at(3).find("(") + 1;
         b = SplitVec.at(3).find("*");
         auto activePowerPhaseA = stof(SplitVec.at(3).substr(a, b - a), nullptr);
         
         if (activePowerPhaseA > 15000.0) {
-          ++testCnt;
+          ++testCntPowerPhaseA;
         }
 
         a = SplitVec.at(4).find("(") + 1;
