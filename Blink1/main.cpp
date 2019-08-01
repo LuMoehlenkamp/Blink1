@@ -38,6 +38,12 @@ int main(void)
 
   influxdb_cpp::server_info serverInfo("192.168.178.34", 8086, "meter", "admin", "LuPi"); // move to meterMsgHandler
 
+  float energy = 0.0;
+  float activePowerPhaseA = 0.0;
+  float activePowerPhaseB = 0.0;
+  float activePowerPhaseC = 0.0;
+  float activePowerTotal = 0.0;
+
   while (true) 
   {
     if (serialDevice.serialRead() > 0)
@@ -58,7 +64,7 @@ int main(void)
         boost::split(SplitVec, meterMessage, boost::is_any_of("\r\n"), boost::token_compress_on); // move to meterMsgHandler
         auto a = SplitVec.at(2).find("(") + 1;
         auto b = SplitVec.at(2).rfind("*");
-        auto energy = stof(SplitVec.at(2).substr(a, b-a), nullptr);
+        energy = stof(SplitVec.at(2).substr(a, b-a), nullptr);
         
         if (energy < 19000) {
           ++testCntEnergy;
@@ -66,7 +72,7 @@ int main(void)
 
         a = SplitVec.at(3).find("(") + 1;
         b = SplitVec.at(3).find("*");
-        auto activePowerPhaseA = stof(SplitVec.at(3).substr(a, b-a), nullptr);
+        activePowerPhaseA = stof(SplitVec.at(3).substr(a, b-a), nullptr);
         
         if (activePowerPhaseA > 15000.0) {
           ++testCntPowerPhaseA;
@@ -74,21 +80,16 @@ int main(void)
 
         a = SplitVec.at(4).find("(") + 1;
         b = SplitVec.at(4).find("*");
-        auto activePowerPhaseB = stof(SplitVec.at(4).substr(a, b - a), nullptr);
+        activePowerPhaseB = stof(SplitVec.at(4).substr(a, b - a), nullptr);
 
         a = SplitVec.at(5).find("(") + 1;
         b = SplitVec.at(5).find("*");
-        auto activePowerPhaseC = stof(SplitVec.at(5).substr(a, b - a), nullptr);
+        activePowerPhaseC = stof(SplitVec.at(5).substr(a, b - a), nullptr);
 
         a = SplitVec.at(6).find("(") + 1;
         b = SplitVec.at(6).find("*");
-        auto activePowerTotal = stof(SplitVec.at(6).substr(a, b - a), nullptr);
+        activePowerTotal = stof(SplitVec.at(6).substr(a, b - a), nullptr);
 
-      /*float energy = 1.1;
-      float activePowerPhaseA = 2.2;
-      float activePowerPhaseB = 3.3;
-      float activePowerPhaseC = 4.4;
-      float activePowerTotal = 5.5;*/
       influxdb_cpp::builder() // move to meterMsgHandler
         .meas("test_1")
         .tag("test","y")
