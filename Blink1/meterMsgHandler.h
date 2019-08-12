@@ -21,7 +21,7 @@ private:
   };
   std::string dataBuffer;
   std::string meterMessage;
-  std::vector <std::string> SplitVec; // meter message splitted into lines
+  std::vector <std::string> splitVec; // meter message splitted into lines
   std::map <meterMsgHandler::ObisCodes, float> parsedMessage;
   std::string beginOfMessage;
   std::string endOfMessage;
@@ -31,6 +31,8 @@ public:
   meterMsgHandler();
   ~meterMsgHandler();
   void meterMessageInject(const char*);
+  void extractInfoFromMsg();
   void splitMessageIntoLines();
-  void splitLines();
+  std::vector <std::string> splitUpLine(std::string);
+  void splitUpValueAndUnit();
 };
