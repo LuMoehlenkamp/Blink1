@@ -30,7 +30,7 @@ void meterMsgHandler::extractInfoFromMsg() {
   for (auto it : splitVec) {
     std::vector<std::string> splitLine = splitUpLine( *it);  
   }
-  
+  // ToDo: utilize 'splitUpValueAndUnit' after it has been implemented
 }
 
 void meterMsgHandler::splitMessageIntoLines() {
