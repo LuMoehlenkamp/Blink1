@@ -11,25 +11,23 @@ meterMsgHandler::~meterMsgHandler() {
 
 }
 
-void meterMsgHandler::meterMessageInject(const char * inputString)
-{
+void meterMsgHandler::meterMessageInject(const char * inputString) {
   if (inputString == beginOfMessage) {
     meterMessage.clear();
-    //std::cout << ++messageCnt << std::endl;
+    ++messageCnt;
   }
   else if (inputString == endOfMessage) {
     extractInfoFromMsg();
   }
   else {
     meterMessage.append(inputString);
-    //std::cout << meterMessage << std::endl;
   }
 }
 
 void meterMsgHandler::extractInfoFromMsg() {
   splitMessageIntoLines();
   int numOfLinesInMessage = splitVec.size(); // ToDo: remove after debugging
-  for (auto it = splitVec.begin(); it != splitVec.end(); ++it) {
+  for (auto it : splitVec) {
     std::vector<std::string> splitLine = splitUpLine( *it);  
   }
   
