@@ -1,6 +1,7 @@
 dist: trusty
 sudo: false
 language: cpp
+env: arm
 
 script: 
  - cmake .
