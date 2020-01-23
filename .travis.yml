@@ -2,7 +2,7 @@ dist: trusty
 sudo: false
 language: cpp
 os: linux
-arch: armv7
+arch: armv8
 
 script:
   - pip install conan
