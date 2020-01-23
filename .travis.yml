@@ -10,5 +10,5 @@ script:
  #- git clone git://git.drogon.net/wiringPi
  #- cd wiringPi
  #- ./build
- - cmake .
- - cmake --build . -- -j2
+  - cmake .
+  - cmake --build . -- -j2
