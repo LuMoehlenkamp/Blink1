@@ -1,6 +1,7 @@
 dist: trusty
 sudo: false
 language: cpp
+os: debian-latest
 env: arm
 
 script: 
