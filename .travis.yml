@@ -5,9 +5,10 @@ os: debian-latest
 env: arm
 
 script:
- - sudo apt-get install git git-core
- - git clone git://git.drogon.net/wiringPi
- - cd wiringPi
- - ./build
+  - sudo apt-get install conan
+ #- sudo apt-get install git git-core
+ #- git clone git://git.drogon.net/wiringPi
+ #- cd wiringPi
+ #- ./build
  - cmake .
  - cmake --build . -- -j2
