@@ -5,6 +5,7 @@ os: linux
 arch: armv8
 
 script:
+  - pip install --upgrade pip
   - pip install conan
  #- sudo apt-get install git git-core
  #- git clone git://git.drogon.net/wiringPi
