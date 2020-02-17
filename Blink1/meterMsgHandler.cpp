@@ -28,7 +28,7 @@ void meterMsgHandler::extractInfoFromMsg() {
   splitMessageIntoLines();
   int numOfLinesInMessage = splitVec.size(); // ToDo: remove after debugging
   for (auto it : splitVec) {
-    std::vector<std::string> splitLine = splitUpLine( *it);  
+    std::vector<std::string> splitLine = splitUpLine( it);  
   }
   // ToDo: utilize 'splitUpValueAndUnit' after it has been implemented
 }
