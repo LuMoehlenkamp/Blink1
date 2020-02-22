@@ -26,6 +26,7 @@ install:
   - conan profile list
   - conan profile new default --detect
   - conan profile update settings.compiler.libcxx=libstdc++11 default
+  - conan remote add conan-community https://api.bintray.com/conan/conan-community/conan 
   #- sudo -H pip install --user --python-version "3.7.1" --no-deps conan
   #- source ~/.profile
 
