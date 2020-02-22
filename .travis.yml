@@ -32,7 +32,7 @@ install:
 script:
   - mkdir build
   - cd build
-  - conan install ..
+  - conan install .. --build=missing
   - conan build ..
   - cd ../Blink1
   - g++ main.cpp -std=c++14 -o gitTest
