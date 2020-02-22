@@ -11,6 +11,10 @@ class HelloConan(ConanFile):
     default_options = {"shared": False}
     generators = "cmake"
 
+    def requirements(self):
+        self.requires("wiringpi/2.50@conan/stable")
+        self.requires("boost/1.71.0@conan/stable")
+
     def source(self):
         # self.run("git clone https://github.com/LuMoehlenkamp/gitTest.git")
         # This small hack might be useful to guarantee proper /MT /MD linkage
