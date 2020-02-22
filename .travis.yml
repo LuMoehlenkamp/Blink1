@@ -30,9 +30,9 @@ install:
   #- source ~/.profile
 
 script:
-  #- mkdir build
-  #- cd build
-  - conan install .
-  - conan build .
-  #- cd ..
+  - mkdir build
+  - cd build
+  - conan install ..
+  - conan build ..
+  - cd ../Blink1
   - g++ main.cpp singleton.cpp -std=c++14 -o gitTest

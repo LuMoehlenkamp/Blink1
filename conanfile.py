@@ -23,7 +23,7 @@ class HelloConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure(source_folder="./")
+        cmake.configure(source_folder="Blink1")
         cmake.build()
 
         # Explicit way:
