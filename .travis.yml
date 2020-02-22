@@ -1,15 +1,38 @@
-dist: trusty
-sudo: false
-language: cpp
 os: linux
-arch: armv8
+dist: "xenial"
+
+language: python
+python: 
+ - "3.7.1"
+#virtualenv:
+#  system_site_packages: true
+
+compiler: 
+  - gcc
+
+before_install:
+  - python --version
+  - python3 --version
+  - pip --version
+  - pip3 --version
+  #- sudo apt-get --purge remove python2
+
+install:
+  - sudo pip install -U pip
+  - pip3 install -U pip
+  - pip3 install conan
+  - pip3 install conan_package_tools
+  - conan user
+  - conan profile list
+  - conan profile new default --detect
+  - conan profile update settings.compiler.libcxx=libstdc++11 default
+  #- sudo -H pip install --user --python-version "3.7.1" --no-deps conan
+  #- source ~/.profile
 
 script:
-  - pip install --upgrade pip
-  - pip install conan
- #- sudo apt-get install git git-core
- #- git clone git://git.drogon.net/wiringPi
- #- cd wiringPi
- #- ./build
-  - cmake .
-  - cmake --build . -- -j2
+  #- mkdir build
+  #- cd build
+  - conan install .
+  - conan build .
+  #- cd ..
+  - g++ main.cpp singleton.cpp -std=c++14 -o gitTest
