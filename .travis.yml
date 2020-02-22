@@ -35,4 +35,4 @@ script:
   - conan install ..
   - conan build ..
   - cd ../Blink1
-  - g++ main.cpp singleton.cpp -std=c++14 -o gitTest
+  - g++ main.cpp -std=c++14 -o gitTest
