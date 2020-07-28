@@ -4,10 +4,6 @@ meterMsg::meterMsg()
 {
 }
 
-meterMsg::~meterMsg()
-{
-}
-
 void splitMeterMsg()
 {
 }

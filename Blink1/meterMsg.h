@@ -18,7 +18,7 @@ private:
 
  public:
   meterMsg();
-  ~meterMsg();
+  ~meterMsg() = default;
   void splitMeterMsg();
 };
 

@@ -13,4 +13,7 @@
     <ClInclude Include="meterMsg.h" />
     <ClInclude Include="meterMsgHandler.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
 </Project>

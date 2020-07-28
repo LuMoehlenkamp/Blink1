@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="meterMsgHandler">
+    <Position X="4.5" Y="1" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QBSAAAAAABAABIADAAAAAAAAEAoIAIAAAAAgAAAgAAg=</HashCode>
+      <FileName>meterMsgHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="mqttWrapper">
+    <Position X="7.25" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>KCQAgAAAAAEAAABAEAAACAAAAAAAAAgAAAgAAAAAAgA=</HashCode>
+      <FileName>mqttWrapper.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="meterMsg">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gBAAAAAAAABAAAACCAFQAgAAAAAAAAAAAABAAUIAAAA=</HashCode>
+      <FileName>meterMsg.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="serial">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CBAQAAAAAAAAAAAAAAAQEgAAACABEAAAAAAAIAAAAAA=</HashCode>
+      <FileName>serial.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ObisCodes">
+    <Position X="12" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAEAAAQAAABAAAAAAAAAAAAABQAACAAAAAA=</HashCode>
+      <FileName>meterMsgHandler.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
