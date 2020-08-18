@@ -3,19 +3,21 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <set>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
 
 enum class ObisCodes {
-  utilityNumber = 10000,
-  energy = 10180,
+  utilityNumber     = 10000,
+  energy            = 10180,
   activePowerPhaseA = 102170,
   activePowerPhaseB = 104170,
   activePowerPhaseC = 106170,
-  activePowerTotal = 10170,
-  statusInfo = 109655,
-  serialNumber = 961255
+  activePowerTotal  = 10170,
+  statusInfo        = 109655,
+  serialNumber      = 961255,
+  invalidNum
 };
 
 class meterMsgHandler
@@ -26,11 +28,12 @@ private:
   std::string meterMessage;
   std::vector <std::string> splitVec; // meter message splitted into lines
   std::map <ObisCodes, double> parsedMessage;
+  std::set <int> allowedObisCodes = {10000, 10180, 102170, 104170, 106170, 10170,109655,961255};
   const std::string beginOfMessage = "/";
   const std::string endOfMessage = "!";
-  int messageCnt = 0;
+  int messageCount = 0;
 
-  void extractInfoFromMsg();
+  bool extractInfoFromMsg();
   int splitMessageIntoLines();
   std::vector <std::string> splitUpLine(std::string&);
   void splitUpLineElements();
